@@ -2,7 +2,7 @@
     <div class="container my-bg-main">
         <span class="text-light">Filtro attivo:{{genreSearch}}</span>
         <div class="row row-cols-5 g-3">
-            <div class="col align-items-stretch" v-for="(disc, i) in DiscList" :key="i">
+            <div class="col align-items-stretch" v-for="(disc, i) in filterAlbum" :key="i">
             <DiscElementVue
             :linkImg="disc.poster"
             :author="disc.author"
@@ -36,7 +36,15 @@ export default{
         
     },
     computed:{
-        
+        filterAlbum(){
+            if(!this.genreSearch){
+                return this.DiscList
+            }
+            return this.DiscList.filter((element)=>{
+                return element.genre === this.genreSearch;
+            })
+        }
+
     },
     methods:{
         // creo una funzione per fare la chiamata all API 
