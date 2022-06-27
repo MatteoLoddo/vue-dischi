@@ -10,20 +10,25 @@
             </DiscElementVue>
             </div>
         </div>
+        
     </div>
 </template>
 
 <script>
+
+
+
 import DiscElementVue from "./DiscElement.vue";
 import axios from "axios"
 export default{
-    components:{DiscElementVue},
+    components:{DiscElementVue,},
     data(){
         return{
         DiscList:[],
         apiURL: 'https://flynn.boolean.careers/exercises/api/array/music',
-
+        
         };
+        
     },
     methods:{
         // creo una funzione per fare la chiamata all API 
@@ -32,13 +37,26 @@ export default{
             .then((object) =>{
                 console.log(object.data.response);
                 this.DiscList.push(...object.data.response)
-            })
 
-        }
+                this.$emit("genreUpdate", this.genreList())
+            })
+            
+        },
+        genreList(){
+                const  listGenre = []; 
+
+                this.DiscList.forEach((element)=>{
+                    if(!listGenre.includes(element.genre)){
+                        listGenre.push(element.genre)
+                    }
+                })
+                return listGenre
+            }
     },
     // con mounted permetto alla funzione richiamata di eseguirsi all avvio della pagina
     mounted(){
         this.fetchDiscList()
+        
     }
 }
 </script>

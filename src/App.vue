@@ -1,9 +1,14 @@
 <template>
   <div id="app">
-  <TheHeader></TheHeader>
-  <main class="my-bg-main p-5">
-    <DiscList></DiscList>
-  </main>
+
+    <TheHeader :list-genre="genreList">
+    </TheHeader>
+
+    <main class="my-bg-main p-5">
+
+      <DiscList @genreUpdate="onGenreUpdate"></DiscList>
+
+    </main>
 
   </div>
 </template>
@@ -12,9 +17,23 @@
 
 import TheHeader from "./components/TheHeader.vue";
 import DiscList from "./components/DiscList.vue";
+
+
 export default {
+
   name: 'App',
-  components: { TheHeader, DiscList }
+  components: { TheHeader, DiscList },
+  data(){
+    return{
+      genreList:[]
+
+    };
+  },
+  methods:{
+    onGenreUpdate(listGenre){
+      this.genreList = listGenre
+    }
+  }
 }
 </script>
 
@@ -27,5 +46,6 @@ export default {
 }
 .my-bg-main{
     background-color: #1E2D3B;
+    height: 100vh;
 }
 </style>

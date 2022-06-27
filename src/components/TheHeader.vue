@@ -1,15 +1,28 @@
 <template>
-    <div class="">
+    <div class="d-flex justify-content-between">
         <img src="../../public/img/spotify-2.svg">
+        <FilterDisc :list-genre="listGenre"
+        ></FilterDisc>
     </div>
 </template>
 
+
+
 <script>
+
+import FilterDisc from '../components/FilterDisc.vue';
 
 
 export default{
-    components:{},
+    
+    components:{FilterDisc,},
+
+    props:{
+        listGenre:Array,
+    }
 }
+
+
 </script>
 
 <style lang="scss" scoped>
