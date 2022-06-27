@@ -1,12 +1,15 @@
 <template>
   <div id="app">
 
-    <TheHeader :list-genre="genreList">
+    <TheHeader :list-genre="genreList"
+                @searchGenre="onSearchGenre">
     </TheHeader>
 
     <main class="my-bg-main p-5">
 
-      <DiscList @genreUpdate="onGenreUpdate"></DiscList>
+      <DiscList @genreUpdate="onGenreUpdate"
+                :genreSearch="genreSearch"
+      ></DiscList>
 
     </main>
 
@@ -25,14 +28,21 @@ export default {
   components: { TheHeader, DiscList },
   data(){
     return{
-      genreList:[]
+      genreList:[],
+      genreSearch:"",
 
     };
   },
+
   methods:{
     onGenreUpdate(listGenre){
       this.genreList = listGenre
-    }
+      console.log(this.genreList);
+    },
+
+    onSearchGenre(genre){
+      this.genreSearch = genre;
+    },
   }
 }
 </script>

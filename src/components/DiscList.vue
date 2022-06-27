@@ -1,5 +1,6 @@
 <template>
     <div class="container my-bg-main">
+        <span class="text-light">Filtro attivo:{{genreSearch}}</span>
         <div class="row row-cols-5 g-3">
             <div class="col align-items-stretch" v-for="(disc, i) in DiscList" :key="i">
             <DiscElementVue
@@ -22,12 +23,19 @@ import DiscElementVue from "./DiscElement.vue";
 import axios from "axios"
 export default{
     components:{DiscElementVue,},
+
+    props:{
+        genreSearch:String,
+    },
     data(){
         return{
         DiscList:[],
         apiURL: 'https://flynn.boolean.careers/exercises/api/array/music',
         
         };
+        
+    },
+    computed:{
         
     },
     methods:{

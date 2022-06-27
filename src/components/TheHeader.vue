@@ -2,6 +2,7 @@
     <div class="d-flex justify-content-between">
         <img src="../../public/img/spotify-2.svg">
         <FilterDisc :list-genre="listGenre"
+                    @searchGenre="$emit('searchGenre', $event)"
         ></FilterDisc>
     </div>
 </template>
@@ -20,6 +21,7 @@ export default{
     props:{
         listGenre:Array,
     }
+
 }
 
 

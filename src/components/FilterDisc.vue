@@ -1,28 +1,35 @@
 <template>
     <div class="mt-3 d-flex align-items-baseline">
-        <select class="form-select mb-3" aria-label=".form-select-lg example">
-            <option value="" v-for="(genre,i) in listGenre" :key="i">{{genre}}</option>
-        </select>
-        <button class="btn btn-secondary">Cerca</button>
+        <div class="input-group">
+            <select type="text" class="form-select" v-model="genre">
+                <option v-for="(genere,i) in listGenre" :key="i" :value="genere">{{genere}}</option>
+            </select>
+            <button class="btn btn-secondary" @click="onClickSearch">Cerca</button>
+        </div>
     </div>
 </template>
 
 <script>
 
 export default{
-    data(){
-        return{
-
-        }
-    },
-
     props:{
         listGenre:Array,
 
 
     },
+    data(){
+        return{
+            genre:"",
+        }
+    },
+
+    
 
     methods:{
+        onClickSearch(){
+            this.$emit("searchGenre", this.genre)
+            console.log(this.genre);
+        }
 
     }
 }
